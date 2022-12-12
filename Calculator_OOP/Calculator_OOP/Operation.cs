@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Calculator_OOP
 {
-    enum Operation
+    public enum Operation
     {
         Addition,
         Substraction,

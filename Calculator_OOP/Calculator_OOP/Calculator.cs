@@ -8,13 +8,17 @@ namespace Calculator_OOP
     {
         private Expression _context;
         private IOperator _oper;
-       
+
         public Calculator(Expression context, IOperator oper)
         {
             _context = context;
             _oper = oper;
         }
 
+        private void BuildChain()
+        {
+
+        }
 
     }
 }
