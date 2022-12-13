@@ -1,14 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Calculator_OOP
 {
     public class PowHandler : Handler
     {
-        public PowHandler(Handler handler) : base(handler)
+        public override void Handle(Expression expr)
         {
-
+            if (expr.Operation == Operation.Pow)
+            {
+                var result = Math.Pow(expr.A, expr.B);
+                expr.Result = result;
+            }
+            else
+            {
+                Next.Handle(expr);
+            }
         }
     }
 }

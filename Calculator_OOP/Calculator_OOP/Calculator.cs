@@ -1,24 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Calculator_OOP
+﻿namespace Calculator_OOP
 {
     class Calculator
     {
-        private Expression _context;
-        private IOperator _oper;
+        private Handler Chain { get; set; }
 
-        public Calculator(Expression context, IOperator oper)
+        public Calculator()
         {
-            _context = context;
-            _oper = oper;
+            BuildChain();
         }
 
-        private void BuildChain()
+        private void BuildChain() => Chain = new AdditionHandler
         {
+            Next = new SubstractionHandler
+            {
+                Next = new MultiplicationHandler()
+                {
+                    Next = new DivisionHandler()
+                    {
+                        Next = new PowHandler()
+                        {
+                            Next = null
+                        }
+                    }
+                }
+            }
+        };
 
-        }
-
+        public void Handle(Expression expr) => Chain.Handle(expr);
     }
 }

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Calculator_OOP
 {
@@ -14,8 +12,12 @@ namespace Calculator_OOP
 
         public Operation Operation { get; private set; }
 
-        public Expression(string input)
+        public double Result { get; set; }
+
+        public Expression(string input = "")
         {
+            if (string.IsNullOrEmpty(input)) return;
+
             var expr = input.Split(' ');
 
             A = double.Parse(expr[0]);
