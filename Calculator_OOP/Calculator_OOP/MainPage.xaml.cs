@@ -73,7 +73,7 @@ namespace Calculator_OOP
             }
 
             _isResult = true;
-            displayLabel.Text += " н = " + Expression.Result.ToString();
+            displayLabel.Text += " = " + Expression.Result.ToString();
         }
 
         private void ClearSymbol(object s, EventArgs e)
