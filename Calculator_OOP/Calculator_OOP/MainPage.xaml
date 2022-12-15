@@ -3,6 +3,28 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Calculator_OOP.MainPage">
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="numBtn" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="WhiteSmoke"/>
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="FontSize" Value="Large"/>
+            </Style>
+
+            <Style x:Key="operBtn" TargetType="Button" BasedOn="{StaticResource Key=numBtn}">
+                <Setter Property="BackgroundColor" Value="Aqua"/>
+            </Style>
+
+            <Style x:Key="resultBtn" TargetType="Button" BasedOn="{StaticResource Key=numBtn}">
+                <Setter Property="BackgroundColor" Value="LightBlue"/>
+            </Style>
+
+            <Style x:Key="clearBtn" TargetType="Button" BasedOn="{StaticResource Key=numBtn}">
+                <Setter Property="BackgroundColor" Value="LightYellow"/>
+                <Setter Property="FontSize" Value="Medium"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -24,29 +46,19 @@
             <ColumnDefinition Width="0.02*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <Button Text="7" Grid.Row="1" Grid.Column="1" BackgroundColor="WhiteSmoke" TextColor="Black" 
-                FontSize="Large"></Button>
-        <Button Text="8" Grid.Row="1" Grid.Column="2" BackgroundColor="WhiteSmoke" TextColor="Black" 
-                FontSize="Large"></Button>
-        <Button Text="9" Grid.Row="1" Grid.Column="3" BackgroundColor="WhiteSmoke" TextColor="Black" 
-                FontSize="Large"></Button>
+        <Button Text="7" Grid.Row="1" Grid.Column="1" Style="{StaticResource numBtn}" Clicked="AddNumber"/>
+        <Button Text="8" Grid.Row="1" Grid.Column="2" Style="{StaticResource numBtn}" Clicked="AddNumber"/>
+        <Button Text="9" Grid.Row="1" Grid.Column="3" Style="{StaticResource numBtn}" Clicked="AddNumber"/>
 
-        <Button Text="4" Grid.Row="2" Grid.Column="1" BackgroundColor="WhiteSmoke" TextColor="Black" 
-                FontSize="Large"></Button>
-        <Button Text="5" Grid.Row="2" Grid.Column="2" BackgroundColor="WhiteSmoke" TextColor="Black" 
-                FontSize="Large"></Button>
-        <Button Text="6" Grid.Row="2" Grid.Column="3" BackgroundColor="WhiteSmoke" TextColor="Black" 
-                FontSize="Large"></Button>
+        <Button Text="4" Grid.Row="2" Grid.Column="1" Style="{StaticResource numBtn}" Clicked="AddNumber"/>
+        <Button Text="5" Grid.Row="2" Grid.Column="2" Style="{StaticResource numBtn}" Clicked="AddNumber"/>
+        <Button Text="6" Grid.Row="2" Grid.Column="3" Style="{StaticResource numBtn}" Clicked="AddNumber"/>
 
-        <Button Text="1" Grid.Row="3" Grid.Column="1" BackgroundColor="WhiteSmoke" TextColor="Black" 
-                FontSize="Large"></Button>
-        <Button Text="2" Grid.Row="3" Grid.Column="2" BackgroundColor="WhiteSmoke" TextColor="Black" 
-                FontSize="Large"></Button>
-        <Button Text="3" Grid.Row="3" Grid.Column="3" BackgroundColor="WhiteSmoke" TextColor="Black" 
-                FontSize="Large"></Button>
+        <Button Text="1" Grid.Row="3" Grid.Column="1" Style="{StaticResource numBtn}" Clicked="AddNumber"/>
+        <Button Text="2" Grid.Row="3" Grid.Column="2" Style="{StaticResource numBtn}" Clicked="AddNumber"/>
+        <Button Text="3" Grid.Row="3" Grid.Column="3" Style="{StaticResource numBtn}" Clicked="AddNumber"/>
 
-        <Button Text="0" Grid.Row="1" Grid.Column="4" BackgroundColor="WhiteSmoke" TextColor="Black" 
-                FontSize="Large"></Button>
+        <Button Text="0" Grid.Row="1" Grid.Column="4" Style="{StaticResource numBtn}" Clicked="AddNumber"/>
 
         <Grid Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="4">
 
@@ -61,30 +73,25 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            
-            <Button Text="+" BackgroundColor="Aqua" Grid.Column="0"
-                    TextColor="Black" FontSize="Large"></Button>
-            <Button Text="-" BackgroundColor="Aqua" Grid.Column="1"
-                    TextColor="Black" FontSize="Large"></Button>
-            <Button Text="x" BackgroundColor="Aqua" Grid.Column="2"
-                    TextColor="Black" FontSize="Large"></Button>
-            <Button Text="/" BackgroundColor="Aqua" Grid.Column="3"
-                    TextColor="Black" FontSize="Large"></Button>
-            <Button Text="^" BackgroundColor="Aqua" Grid.Column="4"
-                    TextColor="Black" FontSize="Large"></Button>
+
+            <Button Text="+" Grid.Column="0" Style="{StaticResource operBtn}" Clicked="AddOperator"/>
+            <Button Text="-" Grid.Column="1" Style="{StaticResource operBtn}" Clicked="AddOperator"/>
+            <Button Text="x" Grid.Column="2" Style="{StaticResource operBtn}" Clicked="AddOperator"/>
+            <Button Text="/" Grid.Column="3" Style="{StaticResource operBtn}" Clicked="AddOperator"/>
+            <Button Text="^" Grid.Column="4" Style="{StaticResource operBtn}" Clicked="AddOperator"/>
         </Grid>
-        
-        <Button Text="=" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="4" BackgroundColor="LightBlue" 
-                TextColor="Black" FontSize="Large"></Button>
-        
 
-        <Button Text="&lt;-" Grid.Row="2" Grid.Column="4" BackgroundColor="LightYellow" TextColor="Black"
-                 FontSize="Medium"></Button>
-        <Button Text="C" Grid.Row="3" Grid.Column="4" BackgroundColor="LightYellow" TextColor="Black"
-                 FontSize="Medium"></Button>
+        <Button Text="=" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="4" Style="{StaticResource resultBtn}"
+                Clicked="GetResult"/>
 
-        <Label x:Name="displayLabel" Text="0" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" 
+
+        <Button Text="&lt;-" Grid.Row="2" Grid.Column="4" Style="{StaticResource clearBtn}" 
+                Clicked="ClearSymbol"/>
+        <Button Text="C" Grid.Row="3" Grid.Column="4" Style="{StaticResource clearBtn}" 
+                Clicked="ClearAll"/>
+
+        <Label x:Name="displayLabel" Text="" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" 
                Background="White" TextColor="Black" FontSize="36" VerticalTextAlignment="Center" 
-               HorizontalTextAlignment="End"></Label>
+               HorizontalTextAlignment="End"/>
     </Grid>
 </ContentPage>

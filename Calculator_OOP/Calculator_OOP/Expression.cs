@@ -4,7 +4,7 @@ namespace Calculator_OOP
 {
     public class Expression
     {
-        public string Input { get; private set; }
+        private string _input;
 
         public double A { get; private set; }
 
@@ -14,39 +14,46 @@ namespace Calculator_OOP
 
         public double Result { get; set; }
 
-        public Expression(string input = "")
+        public string Input
         {
-            if (string.IsNullOrEmpty(input)) return;
-
-            var expr = input.Split(' ');
-
-            A = double.Parse(expr[0]);
-            B = double.Parse(expr[2]);
-
-            switch (expr[1])
+            get => _input;
+            set
             {
-                default: throw new InvalidOperationException("[ERROR]: Unknown operation.");
+                _input = value.Trim();
 
-                case "+":
-                    Operation = Operation.Addition;
-                    break;
+                var expr = _input.Split(' ');
 
-                case "-":
-                    Operation = Operation.Substraction;
-                    break;
+                A = double.Parse(expr[0]);
+                B = double.Parse(expr[2]);
 
-                case "*":
-                    Operation = Operation.Multiplication;
-                    break;
+                switch (expr[1])
+                {
+                    default: throw new InvalidOperationException("[ERROR]: Unknow/Invalid operation");
 
-                case "/":
-                    Operation = Operation.Division;
-                    break;
+                    case "+":
+                        Operation = Operation.Addition;
+                        break;
 
-                case "^":
-                    Operation = Operation.Pow;
-                    break;
+                    case "-":
+                        Operation = Operation.Substraction;
+                        break;
+
+                    case "x":
+                        Operation = Operation.Multiplication;
+                        break;
+
+                    case "/":
+                        Operation = Operation.Division;
+                        break;
+
+                    case "^":
+                        Operation = Operation.Pow;
+                        break;
+
+                }
             }
         }
+
+        public Expression() { }
     }
 }
