@@ -1,6 +1,6 @@
 ﻿namespace Calculator_OOP
 {
-    class Calculator
+    public class Calculator
     {
         private Handler Chain { get; set; }
 
